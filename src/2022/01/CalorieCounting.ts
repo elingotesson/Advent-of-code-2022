@@ -6,7 +6,7 @@ function calculateSumInArray(input: number[]) {
 	return input.reduce((a, b) => a + b, 0);
 }
 
-function findThreeLargestNumbers(array: number[]) {
+function findLargestNumbersInArray(array: number[]) {
   return [...array].sort((a, b) => b - a).slice(0, 3);
 }
 
@@ -20,8 +20,6 @@ export function solvePart1(input: Input) {
 }
 
 export function solvePart2(input: Input) {
-	const threeLargestNumbers = findThreeLargestNumbers(input.map((item) => calculateSumInArray(item)));
-	const sum = threeLargestNumbers.reduce((a, b) => a + b, 0);
-
-	return sum;
+	const threeLargestNumbers = findLargestNumbersInArray(input.map((item) => calculateSumInArray(item)));
+	return calculateSumInArray(threeLargestNumbers);
 }
