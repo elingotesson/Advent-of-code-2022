@@ -1,9 +1,9 @@
 export const yearDay = "2022/03";
 
-type Input = string[][];
+type Input = string[];
 const alphabet = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
 
-function calculateSumInArray(input: number[]) {
+function calculateSumOfArray(input: number[]) {
 	return input.reduce((a, b) => a + b, 0);
 }
 
@@ -20,20 +20,44 @@ function divideStringEqually(string: string) {
 	return string.match(regexp)?.filter(Boolean) ?? [];
 }
 
+function getPriority(characters: string[]): number[] {
+	return characters.map((character) =>  alphabet.indexOf(character) + 1);
+}
+
+function divideIntoGroups(array: string[]) {
+	const groups = [];
+	const length = array.length/3;
+
+	for(var i = 0; i < length; i++) {
+		groups.push(array.splice(0, 3));
+	}
+
+	return groups;
+}
+
+function findCommonBadge(group: string[]): string {
+	const restWords = group.slice(1);
+	const result = group[0].split('').filter(char =>
+  restWords.every(word => word.includes(char)))
+	return Array.from(new Set(result)).pop() ?? '';
+}
+
 export function parsePart1(text: string): Input {
-	const lines = text.split("\n").filter(Boolean);
-	return lines.map((line) => divideStringEqually(line));
+ 	return text.split("\n").filter(Boolean);
 }
 
 export function solvePart1(input: Input) {
-	const characters = input.map((word) => findCommonCharacter(word));
-	const priorities = characters.map((character) => {
-		return alphabet.indexOf(character) + 1;
-	});
+	const dividedLines = input.map((line) => divideStringEqually(line));
+	const characters = dividedLines.map((word) => findCommonCharacter(word));
+	const priorities = getPriority(characters);
 
-	return calculateSumInArray(priorities);
+	return calculateSumOfArray(priorities);
 }
 
 export function solvePart2(input: Input) {
-	return input;
+	const groups = divideIntoGroups(input);
+	const badges = groups.map((group) => findCommonBadge(group));
+	const priorityOfBadges = getPriority(badges);
+
+	return calculateSumOfArray(priorityOfBadges);
 }

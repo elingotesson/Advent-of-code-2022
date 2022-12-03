@@ -42,7 +42,7 @@ describe("Day 1: CalorieCounting", async function () {
 	});
 
 	describe("solvePart2", () => {
-		test("The sum of the Calories carried by these three elves is 45000", () => {
+		test("The sum of the Calories carried by these three elfs is 45000", () => {
 			expect(day.solvePart2(day.parsePart1(example1))).toEqual(45000);
 		});
 	});

@@ -17,12 +17,12 @@ CrZsJsPPZsGzwwsLwLmpwMDw
 	describe("parsePart1", () => {
 		test("extracts strings", () => {
 			const parsed = [
-				['vJrwpWtwJgWr', 'hcsFMMfFFhFp'],
-				['jqHRNqRjqzjGDLGL', 'rsFMfFZSrLrFZsSL'],
-				['PmmdzqPrV', 'vPwwTWBwg'],
-				['wMqvLMZHhHMvwLH', 'jbvcjnnSBnvTQFn'],
-				['ttgJtRGJ', 'QctTZtZT'],
-				['CrZsJsPPZsGz', 'wwsLwLmpwMDw']
+				'vJrwpWtwJgWrhcsFMMfFFhFp',
+				'jqHRNqRjqzjGDLGLrsFMfFZSrLrFZsSL',
+				'PmmdzqPrVvPwwTWBwg',
+				'wMqvLMZHhHMvwLHjbvcjnnSBnvTQFn',
+				'ttgJtRGJQctTZtZT',
+				'CrZsJsPPZsGzwwsLwLmpwMDw'
 			];
 			expect(day.parsePart1(example1)).toEqual(parsed);
 		});
@@ -31,6 +31,12 @@ CrZsJsPPZsGzwwsLwLmpwMDw
 	describe("solvePart1", () => {
 		test("the sum of the priorities of the elfs rucksack item types", () => {
 			expect(day.solvePart1(day.parsePart1(example1))).toEqual(157);
+		});
+	});
+
+	describe("solvePart2", () => {
+		test("The sum of elfs rucksack security badges is 70", () => {
+			expect(day.solvePart2(day.parsePart1(example1))).toEqual(70);
 		});
 	});
 });
